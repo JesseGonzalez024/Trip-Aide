@@ -1,4 +1,4 @@
 class TripController < ApplicationController
-
+    
 
 end

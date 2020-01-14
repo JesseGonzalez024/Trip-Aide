@@ -1,3 +1,3 @@
-class Flight < ActiveRecord::Base[5.2]
+class Flight < ActiveRecord::Base
     belongs_to :trip
 end

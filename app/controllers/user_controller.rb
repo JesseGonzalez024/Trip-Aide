@@ -16,6 +16,21 @@
 #User is given an option to signoff
 
 class UserController < ApplicationController
+    get '/user/register' do
+        erb :'user/register'
+    end
+
+    get '/user/login' do
+        erb :'user/login'
+    end
+
+    post '/registration' do 
+        binding.pry
+    end
+
+    post '/login' do 
+        binding.pry
+    end
 
 
 end
