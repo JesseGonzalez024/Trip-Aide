@@ -21,17 +21,40 @@ class UserController < ApplicationController
     end
 
     get '/user/login' do
-       
-        
         erb :'user/login'
     end
 
-    post '/registration' do 
-        binding.pry
+    post '/registration' do
+        @user = User.create(name: params[:name], username: params[:username], password: params[:password])
+        session[:user_id] = @user.id
+
+        redirect to 'user/homepage'
+
     end
 
-    post '/login' do 
-        binding.pry
+    post '/login' do
+        @user = User.find_by(username: params[:username])
+            if  @user != nil && @user.authenticate(params[:password])
+                binding.pry
+                session[:user_id] = @user.id
+                redirect to 'user/homepage'
+            else
+                erb :error
+            end
+    end
+
+    get '/user/homepage' do 
+        @current_user = User.find_by_id(session[:user_id])
+        if @current_user
+            erb :'user/homepage'
+        else
+            erb :error
+        end
+    end
+
+    get '/logout' do 
+        session.clear
+        erb :welcome
     end
 
 
