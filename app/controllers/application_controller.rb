@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
   #welcome page displays two options- register or sign up.
   #Either option will take user to the corresponging program view
 
-  get "/" do
+  get "/" do 
     erb :welcome
   end
 
