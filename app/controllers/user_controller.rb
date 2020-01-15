@@ -24,18 +24,30 @@ class UserController < ApplicationController
         erb :'user/login'
     end
 
+    #must add logic to determine if credentials fit requirments 
     post '/registration' do
-        @user = User.create(name: params[:name], username: params[:username], password: params[:password])
-        session[:user_id] = @user.id
-
-        redirect to 'user/homepage'
-
+        if params[:username]=="" || params[:password]==""
+            erb :error
+       end
+       
+        @user = User.new(name: params[:name], username: params[:username], password: params[:password])
+        if @user.save
+            binding.pry
+            session[:user_id] = @user.id
+            redirect to 'user/homepage'
+        else
+            erb :error
+        end
     end
 
+    #must complete what the error page looks like
     post '/login' do
+        if params[:username]=="" || params[:password]==""
+            erb :error
+       end
+    
         @user = User.find_by(username: params[:username])
-            if  @user != nil && @user.authenticate(params[:password])
-                binding.pry
+            if  @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.id
                 redirect to 'user/homepage'
             else
@@ -56,6 +68,5 @@ class UserController < ApplicationController
         session.clear
         erb :welcome
     end
-
 
 end

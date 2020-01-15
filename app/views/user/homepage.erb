@@ -3,9 +3,14 @@
         <head>
             <title>Trip Aide</title>
         </head>
+        <header>
+            <nav>
+                <a href="/trips/new"> Add a new Trip <a/>
+            </nav>
+        </header>
         <body>
             <% if Helpers.is_logged_in?(session)%>
-                <h3> Welcome, <%=Helpers.current_user(session).username %> </h3> 
+                <h3> Welcome,  <%= Helpers.current_user(session).name %> </h3> 
                 <a href="/logout">Log Out</a>
             <% end %>
         </body>
