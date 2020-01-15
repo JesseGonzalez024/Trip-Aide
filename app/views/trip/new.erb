@@ -1,10 +1,25 @@
-Add a new trip
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Trip Aide</title>
+        </head>
+        <header>
+            <h1>Add a new trip:</h1>
+        </header>
 
-
-<form action='/new_trip' method='post'>
-        <label>
-            Dates for new trip
-            <input type="date" name="new_trip">
-        </label>
-        <p><button>Submit</button></p>
-</form>
+        <form action='/user/trips/new' method='post'>
+            <h5> Name your trip! </h5>
+                <input type="text" id="name" name="name">
+            <br>
+            <h5> Where are you going to? </h5>
+                <input type="text" id="destination" name="destination">
+            <br>
+            <h5> When are you leaving? </h5>
+                <input type="date" name="start_date" min="1980-01-01" max="2030-01-01" required>
+            <br>
+            <h5> When do you come back? </h5>
+                <input type="date" name="end_date" min="1980-01-01" max="2030-01-01" required>
+            <br>    
+            <button>Submit</button></p>
+        </form>
+    </html>

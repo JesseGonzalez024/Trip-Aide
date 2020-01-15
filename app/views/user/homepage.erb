@@ -4,14 +4,48 @@
             <title>Trip Aide</title>
         </head>
         <header>
-            <nav>
-                <a href="/trips/new"> Add a new Trip <a/>
-            </nav>
+            <% if Helpers.is_logged_in?(session)%>
+            <h3> Welcome,  <%= Helpers.current_user(session).name %> </h3>
+                <div>
+                <nav>
+                    Link for new trips, link for old trips, link for current trips <br>  
+                    <a href="/user/trips/new"> Create a new Trip <a/>
+                    <br>
+                    <a href="/user/trips/past_trips"> View you past trips </a>
+                    <br>
+                    <a href="/user/trips/future_trips"> View your future trips </a>
+                </nav>
+                </div>
+            <% end %>
         </header>
         <body>
-            <% if Helpers.is_logged_in?(session)%>
-                <h3> Welcome,  <%= Helpers.current_user(session).name %> </h3> 
-                <a href="/logout">Log Out</a>
+            <div> 
+            <% if Helpers.is_logged_in?(session) %>
+    
+                <section>
+                    <h4> Your current trips: </h4>
+                        <% if Helpers.current_user(session).trips.size > 0 %>
+                            <% Helpers.current_user(session).trips.map do |trip| %>
+                                <div>
+                                    <br>
+                                    <%= trip.name %>
+                                    <br>
+                                    <h5> Starting on: <%= trip.start_date %> </h5>
+                                    <h5> Ending on: <%= trip.end_date %> </h5>
+                                </div>
+                            <%end%>
+                        <% else %>
+                            <%= "You have no trips planned :-(" %>
+                        <% end %>
+                    <br>
+                    <br>
+                </section>
+                <section>
+                     <h4>Your past trips </h4>       
+                </section>
+                    <a href="/logout">Log Out</a>
             <% end %>
+            </div>
+
         </body>
     </html>

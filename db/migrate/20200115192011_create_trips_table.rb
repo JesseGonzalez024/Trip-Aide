@@ -3,7 +3,8 @@ class CreateTripsTable < ActiveRecord::Migration
     create_table :trips do |t|
       t.string :name
       t.string :destination
-      t.string :dates
+      t.string :start_date
+      t.string :end_date
     end
   end
 end
