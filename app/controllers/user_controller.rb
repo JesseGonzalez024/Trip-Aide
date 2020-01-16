@@ -16,11 +16,11 @@
 #User is given an option to signoff
 
 class UserController < ApplicationController
-    get '/user/register' do
+    get '/register' do
         erb :'user/register'
     end
 
-    get '/user/login' do
+    get '/login' do
         erb :'user/login'
     end
 
@@ -49,7 +49,7 @@ class UserController < ApplicationController
         @user = User.find_by(username: params[:username])
             if  @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.id
-                redirect to 'user/homepage'
+                redirect to '/user/homepage'
             else
                 erb :error
             end
@@ -68,5 +68,5 @@ class UserController < ApplicationController
         session.clear
         erb :welcome
     end
-
+    
 end

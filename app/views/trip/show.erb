@@ -1,1 +1,9 @@
-show page
+<% if Helpers.is_logged_in?(session)%>
+    <h3> Here are the details for your <%=@trip.name%>% trip! </h3>
+    
+    
+
+<%binding.pry%>
+
+
+<% end %>
