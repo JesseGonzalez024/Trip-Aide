@@ -1,1 +1,25 @@
+<% if Helpers.is_logged_in?(session)%>
+
 <h1> Edit Trips here </h1>
+
+<form action="/trips/edit" method='post'>
+            <div>
+                <label for="name">Change the trip's name:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div>
+                <label for="destination">Change the destination:</label>
+                <input type="text" id="destination" name="destination">
+            </div>
+            <div>
+                <label for="start_date">Change trip's start date:</label>
+                <input type="text" id="start_date" name="start_date">
+            </div>
+            <div>
+                <label for="end_date">Change trip's end date:</label>
+                <input type="text" id="end_date" name="end_date">
+            </div>
+                <input type="submit" name="submit" value="Submit Changes">
+        </form>
+
+<% end %>

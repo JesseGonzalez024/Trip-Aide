@@ -1,9 +1,21 @@
 <% if Helpers.is_logged_in?(session)%>
-    <h3> Here are the details for your <%=@trip.name%>% trip! </h3>
+    <h2> Here are the details for your <%=@trip.name%> trip! </h2>
+        <br>
+        <br>
+        <h3>Your trip to <%=@trip.destination%> is set to start on</h3>
+            <br>
+            <h5><%=@trip.start_date%> and will end on <%=@trip.end_date%></h5>
+            <br>
+
+        <form action="/trips/edit" method='post'>
+            <div>
+                <input type="submit" name="<%=@trip.id%>" value="Edit Trip">
+            </div>   
+        </form>
+        <form action="/trips/delete" method='post'>
+            <div>
+                <input type="submit" name="<%=@trip.id%>" value="Delete Trip">
+            </div>   
+        </form>
     
-    
-
-<%binding.pry%>
-
-
 <% end %>
