@@ -3,18 +3,25 @@
         <br>
         <br>
         <h3>Your trip to <%=@trip.destination%> is set to start on</h3>
-            <br>
             <h5><%=@trip.start_date%> and will end on <%=@trip.end_date%></h5>
             <br>
 
-        <form action="/trips/edit" method='post'>
+        <form action="/trips/edit" method='get'>
             <div>
-                <input type="submit" name="<%=@trip.id%>" value="Edit Trip">
+                <button name="id" type="submit" value="<%=@trip.id%>">Edit Trip</button>
             </div>   
         </form>
-        <form action="/trips/delete" method='post'>
+        <br>
+        <form action="/trips/<%=@trip.id%>" method='post'>
+            <input id="hidden" type="hidden" name="_method" value='delete'>
             <div>
-                <input type="submit" name="<%=@trip.id%>" value="Delete Trip">
+                <button name="id" type="submit" value="<%=@trip.id%>">Delete Trip</button>
+            </div>   
+        </form>
+        <br>
+        <form action="/user/homepage" method='get'>
+            <div>
+                <button name="id" type="submit" value="<%=@trip.id%>">Back to Homepage</button>
             </div>   
         </form>
     

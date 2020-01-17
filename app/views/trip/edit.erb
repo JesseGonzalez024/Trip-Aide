@@ -2,7 +2,8 @@
 
 <h1> Edit Trips here </h1>
 
-<form action="/trips/edit" method='post'>
+    <form action="/trips/<%=@trip.id%>/edit" method='post'>
+        <input id="hidden" type="hidden" name="_method" value='patch'>
             <div>
                 <label for="name">Change the trip's name:</label>
                 <input type="text" id="name" name="name">
@@ -19,7 +20,9 @@
                 <label for="end_date">Change trip's end date:</label>
                 <input type="text" id="end_date" name="end_date">
             </div>
+            <div>
                 <input type="submit" name="submit" value="Submit Changes">
-        </form>
+            </div>
+    </form>
 
 <% end %>

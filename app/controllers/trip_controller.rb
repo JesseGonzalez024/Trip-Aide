@@ -1,12 +1,13 @@
 class TripController < ApplicationController
-    
+
     get '/trips/new' do
-        #takes user to erb new to make new trip instance
+        #Takes user to erb: NEW to make new trip instance.
         
         erb :'trip/new'
     end
 
-    post '/user/trips/new' do
+    post '/trips' do
+        #Creates a NEW trip insatnce/ redirects to homepage.
 
         @trip = Trip.new(name: params[:name], destination: params[:destination])
         @trip.start_date = params[:start_date]
@@ -20,42 +21,52 @@ class TripController < ApplicationController
         end
     end
 
-    get '/trips/past_trips' do
-        #takes user to trips that have already passed
-        binding.pry
-
-        erb :'/trip/show'
-    end
-
-    get '/trips/edit/:id' do 
-        #takes user to erb edit to edit selected trip
+    get '/trips/edit' do 
+        #Takes user to erb EDIT to edit selected trip.
         
-        binding.pry
+        @trip = Trip.find_by_id(params[:id])
+        @current_user = User.find_by_id(session[:user_id])
+        
         if @current_user
-            erb :'trip/show'
+            erb :'trip/edit'
         else
             erb :error
         end
     end
 
-    post '/trips/edit' do
-        binding.pry
+    patch '/trips/:id/edit' do
+        #Accepts new form with changes/ UPDATES trip instance data.
 
+        @trip = Trip.find_by_id(params[:id])
+        @trip.name = params[:name]
+        @trip.destination = params[:destination]
+        @trip.start_date = params[:start_date]
+        @trip.end_date = params[:end_date]
+        @trip.save
+
+        redirect to "/trips/#{@trip.id}"
     end
 
-    post '/trips/delete' do
-        binding.pry
+    delete '/trips/:id' do
+        #Deletes trip instance/ redirects to homepage.
+        
+        @trip = Trip.find_by_id(params[:id])
+        @trip.destroy
+
+        redirect to '/user/homepage'
     end
 
-    get '/trips/show/:id' do
-        #takes user to the erb show page to review trip details
+    get '/trips/:id' do
+        #Takes user to the erb SHOW.
        
         @trip = Trip.find_by_id(params[:id])
         @current_user = User.find_by_id(session[:user_id])
+        
         if @current_user
             erb :'trip/show'
         else
             erb :error
         end
     end
+    
 end

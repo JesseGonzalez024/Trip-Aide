@@ -23,7 +23,7 @@
                             <% Helpers.current_user(session).trips.map do |trip| %>
                                 <div>
                                     <br>
-                                    <a href="/trips/show/<%=trip.id%>"> <%=trip.name%> </a>
+                                    <a href="/trips/<%=trip.id%>"> <%=trip.name%> </a>
                                     <br>
                                     <h5> Starting on: <%= trip.start_date %> </h5>
                                     <h5> Ending on: <%= trip.end_date %> </h5>
