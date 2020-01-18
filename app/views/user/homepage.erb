@@ -1,47 +1,42 @@
-<!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <title>Trip Aide</title>
-        </head>
-        <body>
-            <% if Helpers.is_logged_in?(session)%>
-                <h3> Welcome,  <%= Helpers.current_user(session).name %> </h3>
-                <div>
-                    <nav>
-                        Link for new trips, link for old trips, link for current trips <br>  
-                        <a href="/trips/new"> Create a new Trip </a>
-                        <br>
-
-                       
-                         <% #<a href="/trips/past_trips"> View you past trips </a>%>
-                        <br>
-                        <% #<a href="/trips/future_trips"> View your future trips </a>%>
-                    </nav>
-                </div>
-                <div> 
-                <section>
-                    <h4> Your current trips: </h4>
-                        <% if Helpers.current_user(session).trips.size > 0 %>
-                            <% Helpers.current_user(session).trips.map do |trip| %>
-                                <div>
-                                    <br>
-                                    <a href="/trips/<%=trip.id%>"> <%=trip.name%> </a>
+<div id="page">
+<% if Helpers.is_logged_in?(session)%>
+    <h3> Welcome,  <%= Helpers.current_user(session).name %> </h3>
+        <div>
+            <nav id="nav">
+                <a href="/trips/new"> Create a new Trip </a>
+                <br>
+                <% #<a href="/trips/past_trips"> View you past trips </a>%>
+                <br>
+                <% #<a href="/trips/future_trips"> View your future trips </a>%>
+            </nav>
+        </div>
+        <div> 
+            <section id="trips">
+                <h4> Your current trips: </h4>
+                    <% if Helpers.current_user(session).trips.size > 0 %>
+                        <% Helpers.current_user(session).trips.map do |trip| %>
+                            <div>
+                                <br>
+                                <ul>
+                                    <li> <a href="/trips/<%=trip.id%>"> <%=trip.name%> </a> </li>
                                     <br>
                                     <h5> Starting on: <%= trip.start_date %> </h5>
                                     <h5> Ending on: <%= trip.end_date %> </h5>
-                                </div>
-                            <%end%>
-                        <% else %>
-                            <%= "You have no trips planned :-(" %>
-                        <% end %>
+                                </ul>
+                            </div>
+                        <%end%>
+                    <% else %>
+                        <%= "You have no trips planned :-(" %>
+                    <% end %>
                     <br>
                     <br>
-                </section>
-                <section>
-                     <h4>Your past trips </h4>       
-                </section>
+            </section>
+            <section>
+                <h4>Your past trips </h4>
+                <br>       
+            </section>
                 <a href="/logout">Log Out</a>
-            <% end %>
         </div>
-        </body>
-    </html>
+<% end %>
+<div>
+       
