@@ -1,0 +1,45 @@
+<% if Helpers.is_logged_in?(session)%>
+    <h2> Add a flight to your <%=@trip.name%> trip! </h2>
+    <div>
+        <form action="/flights/<%=@trip.id%>" method='post'>
+            <div>
+                <label for="Airlines">Name of Airline:</label>
+                <input type="text" id="airline" name="airline">
+            </div>
+            <br>
+            <div>
+                <label for="confirmation">Confirmation code:</label>
+                <input type="text" id="confirmation" name="confirmation">
+            </div>
+            <br>
+            <div>
+                <label for="seat">Your seat number:</label>
+                <input type="seat" id="seat" name="seat">
+            </div>
+            <br>
+            <div>
+                <label for="depart_time">Depart time:</label>
+                <input type="time" id="depart_time" name="depart_time">
+            </div>
+            <br>
+            <div>
+                <label for="depart_from">Where are you departing from?</label>
+                <input type="text" id="depart_from" name="depart_from">
+            </div>
+            <br>
+            <div>
+                <label for="arrival_time">Arrival time:</label>
+                <input type="time" id="arrival_time" name="arrival_time">
+            </div>
+            <br>
+            <div>
+                <label for="arrival_to">Where will you be arriving to?</label>
+                <input type="text" id="arrival_to" name="arrival_to">
+            </div>
+            <br>
+            <div>
+                <input type="submit" name="submit" value="Add to Trip">
+            </div>
+        </form>
+    </div>
+<% end %>

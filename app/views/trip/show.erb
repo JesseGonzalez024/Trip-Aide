@@ -1,28 +1,23 @@
 <% if Helpers.is_logged_in?(session)%>
+    <nav id="show_nav">
+        <form action="/trips/edit" method='get'>
+                <button name="id" type="submit" value="<%=@trip.id%>">Edit Trip</button>   
+        </form>
+        <form action="/trips/<%=@trip.id%>" method='post'>
+            <input id="hidden" type="hidden" name="_method" value='delete'>
+                <button name="id" type="submit" value="<%=@trip.id%>">Delete Trip</button> 
+        </form>
+        <form action="/flights/<%=@trip.id%>/new" method='get'>
+                <button name="id" type="submit" value="<%=@trip.id%>">Add a flight</button>  
+        </form>
+        <form action="/user/homepage" method='get'>
+                <button name="id" type="submit" value="<%=@trip.id%>">Back to Homepage</button> 
+        </form>
+    </nav>
     <h2> Here are the details for your <%=@trip.name%> trip! </h2>
         <br>
-        <br>
+        <% #binding.pry %>
         <h3>Your trip to <%=@trip.destination%> is set to start on</h3>
             <h5><%=@trip.start_date%> and will end on <%=@trip.end_date%></h5>
             <br>
-
-        <form action="/trips/edit" method='get'>
-            <div>
-                <button name="id" type="submit" value="<%=@trip.id%>">Edit Trip</button>
-            </div>   
-        </form>
-        <br>
-        <form action="/trips/<%=@trip.id%>" method='post'>
-            <input id="hidden" type="hidden" name="_method" value='delete'>
-            <div>
-                <button name="id" type="submit" value="<%=@trip.id%>">Delete Trip</button>
-            </div>   
-        </form>
-        <br>
-        <form action="/user/homepage" method='get'>
-            <div>
-                <button name="id" type="submit" value="<%=@trip.id%>">Back to Homepage</button>
-            </div>   
-        </form>
-    
 <% end %>

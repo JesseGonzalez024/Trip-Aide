@@ -43,12 +43,13 @@ class UserController < ApplicationController
     end
 
     get '/user/homepage' do
-        #Verifies user/ takes user to erb homepage. 
+        #Verifies user/ takes user to erb homepage.
+        
         @current_user = User.find_by_id(session[:user_id])
         if @current_user
             erb :'user/homepage'
         else
-            erb :error
+            erb :welcome
         end
     end
 
