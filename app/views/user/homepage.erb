@@ -1,28 +1,29 @@
-<div id="page">
 <% if Helpers.is_logged_in?(session)%>
-    <h3> Welcome,  <%= Helpers.current_user(session).name %> </h3>
-        <div>
-            <nav id="nav">
-                <a href="/trips/new"> Create a new Trip </a>
-                <br>
-                <% #<a href="/trips/past_trips"> View you past trips </a>%>
-                <br>
-                <% #<a href="/trips/future_trips"> View your future trips </a>%>
-            </nav>
+    <div id="page">
+        <div  id="intro">
+            <h3> Welcome, <%=Helpers.current_user(session).name%> </h3>
+            <div id="nav">
+                <nav>
+                    <a href="/trips/new"> Create a new Trip </a>
+                    <br>
+                    <% #<a href="/trips/past_trips"> View you past trips </a>%>
+                    <br>
+                    <% #<a href="/trips/future_trips"> View your future trips </a>%>
+                </nav>
+            </div>
         </div>
-        <div> 
             <section id="trips">
                 <h4> Your current trips: </h4>
                     <% if Helpers.current_user(session).trips.size > 0 %>
                         <% Helpers.current_user(session).trips.map do |trip| %>
                             <div>
-                                <br>
                                 <ul>
                                     <li> <a href="/trips/<%=trip.id%>"> <%=trip.name%> </a> </li>
                                     <br>
                                     <h5> Starting on: <%= trip.start_date %> </h5>
                                     <h5> Ending on: <%= trip.end_date %> </h5>
                                 </ul>
+                            <br>
                             </div>
                         <%end%>
                     <% else %>
@@ -31,12 +32,9 @@
                     <br>
                     <br>
             </section>
-            <section>
-                <h4>Your past trips </h4>
-                <br>       
-            </section>
-                <a href="/logout">Log Out</a>
+        <div id="logout">
+            <a href="/logout">Log Out</a>
         </div>
+    </div>
 <% end %>
-<div>
        

@@ -1,4 +1,4 @@
-<main>
+<% if Helpers.is_logged_in?(session)%>
     <div>
         <header>
             <h1>Add a new trip:</h1>
@@ -21,6 +21,12 @@
                     <br>    
                 <button>Submit</button></p>
             </form>
+
+            <form action="/user/homepage" method='get'>
+            <div>
+                <button name="id" type="submit">Back to Homepage</button>
+            </div>   
+        </form>
         <body>
     </div>
-</main>
+<% end %>

@@ -8,14 +8,14 @@
 }
 #welcome #welcome_to {
     font-family: "Courier New", monospace;
-    font-size: 15px;
-    margin-left: 200px;
+    font-size: 20px;
+    margin-left: 100px;
     margin-bottom: 0;
 }
 
 #welcome #instructions {
     font-family: "Courier New", monospace;
-    font-size: 20px;
+    font-size: 17px;
     text-align: center;
 }
 
@@ -25,11 +25,10 @@
     font-family: "Courier New", monospace;
 }
 
-#welcome #page #button {
-    font-size: 25px;
+#welcome #button {
     text-align: center;
 }
 
-#welcome #page button {
-    font-size: 20px;
+#welcome #button button {
+    font-size: 25px;
 }

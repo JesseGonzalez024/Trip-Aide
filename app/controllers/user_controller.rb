@@ -38,7 +38,7 @@ class UserController < ApplicationController
                 session[:user_id] = @user.id
                 redirect to '/user/homepage'
             else
-                erb :error
+                erb :welcome
             end
     end
 

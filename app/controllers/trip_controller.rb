@@ -30,7 +30,7 @@ class TripController < ApplicationController
         if @current_user
             erb :'trip/edit'
         else
-            erb :error
+            erb :welcome
         end
     end
 
@@ -65,7 +65,7 @@ class TripController < ApplicationController
         if @current_user
             erb :'trip/show'
         else
-            erb :error
+            erb :welcome
         end
     end
     
