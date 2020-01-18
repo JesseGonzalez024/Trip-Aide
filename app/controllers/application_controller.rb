@@ -9,11 +9,9 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
-  #upon entry, user is directed to web welcome page
-  #welcome page displays two options- register or sign up.
-  #Either option will take user to the corresponging program view
-
-  get "/" do 
+  get "/" do
+    #Upon entry, user is redirected to erb Welcome.
+     
     erb :welcome
   end
 
