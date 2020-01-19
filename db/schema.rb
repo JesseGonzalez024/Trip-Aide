@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200118072057) do
+ActiveRecord::Schema.define(version: 20200119214004) do
 
   create_table "flights", force: :cascade do |t|
     t.string  "airline"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20200118072057) do
     t.string  "arrival_time"
     t.string  "arrival_to"
     t.integer "trips_id"
+    t.string  "depart_date"
+    t.string  "arrival_date"
   end
 
   create_table "trips", force: :cascade do |t|

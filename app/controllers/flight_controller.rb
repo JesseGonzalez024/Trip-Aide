@@ -14,7 +14,7 @@ class FlightController < ApplicationController
         @flight.arrival_time = params[:arrival_time]
         @flight.arrival_to = params[:arrival_to]
         @flight.trips_id = params[:id]
-
+        
         if @flight.save
             redirect to '/user/homepage'
         else

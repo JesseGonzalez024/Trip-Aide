@@ -18,6 +18,7 @@ class UserController < ApplicationController
         if params[:username]=="" || params[:password]==""
             erb :'user/register'
         end
+        
         @user = User.new(name: params[:name], username: params[:username], password: params[:password])
         if @user.save
             session[:user_id] = @user.id
@@ -58,6 +59,14 @@ class UserController < ApplicationController
         
         session.clear
         erb :welcome
-    end 
-     
+    end
+    
+    get '/user/inspiration' do
+        
+        @current_user = User.find_by_id(session[:user_id]) 
+        if @current_user
+            erb :'user/inspiration'
+        end
+    end
+ 
 end

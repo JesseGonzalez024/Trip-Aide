@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    #Upon entry, user is redirected to erb Welcome.   
+    #Upon entry, user is redirected to erb Welcome.       
     erb :welcome
   end
 
