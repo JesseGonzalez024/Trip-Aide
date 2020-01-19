@@ -19,7 +19,7 @@ class UserController < ApplicationController
             erb :'user/register'
         end
         
-        @user = User.new(name: params[:name], username: params[:username], password: params[:password])
+        @user = User.new(params[:user])
         if @user.save
             session[:user_id] = @user.id
             redirect to 'user/homepage'
@@ -32,7 +32,7 @@ class UserController < ApplicationController
         #Authenticates user logging in/redirects to homepage.
         
         if params[:username]=="" || params[:password]==""
-            erb :error
+            erb :'/user/login'
         end
         @user = User.find_by(username: params[:username])
             if  @user && @user.authenticate(params[:password])

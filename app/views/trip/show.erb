@@ -16,7 +16,6 @@
         </style>
     </head>
     <% if Helpers.is_logged_in?(session)%>
-        <% binding.pry %>
         <h2> Here are the details for your <%=@trip.name%> trip! </h2>
             <nav>
                 <form action="/trips/edit" method='get'>
@@ -29,17 +28,31 @@
                 <form action="/flights/<%=@trip.id%>/new" method='get'>
                     <button name="id" type="submit" value="<%=@trip.id%>">Add a flight</button>  
                 </form>
+                <form action="/flights/<%=@flight.id%>/show" method='post'>
+                    <input id="hidden" type="hidden" name="_method" value='patch'>
+                    <button name="id" type="submit" value="<%=@flight.id%>">View Flight(s) Info</button> 
+                </form>
                 <form action="/user/homepage" method='get'>
                     <button name="id" type="submit" value="<%=@trip.id%>">Back to Homepage</button> 
                 </form>
             </nav>
             <br>
-            <% #binding.pry %>
             <br>
         <h3>Your trip to <%=@trip.destination%> is set to start on:</h3>
             <h5><%=@trip.start_date%></h5> 
-        <h3>...and will end on: </h3>
+        <h3>Will end on: </h3>
         <h5> <%=@trip.end_date%> </h5>
-            <br>
+        <h3> Flight Info: </h3>
+        <% if @flight == nil %>
+            <h5> You have no flight(s) planned for this trip </h5>
+        <% else %>
+            <section>
+                <%= @flight.airline %>
+                <br>
+                <h5>Departure from: <%= @flight.depart_from %> on: <%= @flight.depart_date %></h5>
+                <h5>Arrial from: <%= @flight.arrival_to %> on: <%= @flight.arrival_date %> </h5>
+                
+            </section>
+        <% end %>
     <% end %>
 <html>

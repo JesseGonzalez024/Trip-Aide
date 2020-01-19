@@ -8,15 +8,15 @@
         <form action='/registration' method='post'>
             <div>
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" require>
+                <input type="text" id="name" name="user[name]" require>
             </div>
             <div>
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
+                <input type="text" id="username" name="user[username]">
             </div>
             <div>
                 <label for="password">Password:</label>
-                <input type="text" id="password" name="password">
+                <input type="text" id="password" name="user[password]">
             </div>
                 <input type="submit" name="submit" value="Register">
         </form>

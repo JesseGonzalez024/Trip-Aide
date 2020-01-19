@@ -7,19 +7,18 @@ class FlightController < ApplicationController
     end
 
     post '/flights/:id' do
-        @flight = Flight.new(airline: params[:airline], confirmation: params[:confirmation])
-        @flight.seat = params[:seat]
-        @flight.depart_time = params[:depart_time]
-        @flight.depart_from = params[:depart_from]
-        @flight.arrival_time = params[:arrival_time]
-        @flight.arrival_to = params[:arrival_to]
+        @flight = Flight.new(params[:flight])
         @flight.trips_id = params[:id]
         
         if @flight.save
-            redirect to '/user/homepage'
+            redirect to "/trips/#{@flight.trips_id}"
         else
             redirect to '/flights/:id/new'
         end
     end 
+
+    patch '/flights/:id/show' do 
+        binding.pry
+    end
 
 end

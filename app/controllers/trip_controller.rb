@@ -8,9 +8,7 @@ class TripController < ApplicationController
 
     post '/trips' do
         #Creates a NEW trip insatnce/ redirects to homepage.
-        @trip = Trip.new(name: params[:name], destination: params[:destination])
-        @trip.start_date = params[:start_date]
-        @trip.end_date = params[:end_date]
+        @trip = Trip.new(params[:trip])
         @trip.user_id = session[:user_id]
         
         if @trip.save
@@ -37,14 +35,11 @@ class TripController < ApplicationController
         #Accepts new form with changes/ UPDATES trip instance data.
 
         @trip = Trip.find_by_id(params[:id])
-
-        @trip.name = params[:name]
-        @trip.destination = params[:destination]
-        @trip.start_date = params[:start_date]
-        @trip.end_date = params[:end_date]
-        @trip.save
-
-        redirect to "/trips/#{@trip.id}"
+        @trip.update(params[:trip])
+        
+        if @trip.save 
+            redirect to "/trips/#{@trip.id}"
+        end
     end
 
     delete '/trips/:id' do

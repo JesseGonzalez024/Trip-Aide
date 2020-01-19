@@ -11,42 +11,56 @@
         <form action="/flights/<%=@trip.id%>" method='post'>
             <div>
                 <label for="Airlines">Name of Airline:</label>
-                <input type="text" id="airline" name="airline">
+                <input type="text" id="airline" name="flight[airline]">
             </div>
             <br>
             <div>
                 <label for="confirmation">Confirmation code:</label>
-                <input type="text" id="confirmation" name="confirmation">
+                <input type="text" id="confirmation" name="flight[confirmation]">
             </div>
             <br>
             <div>
                 <label for="seat">Your seat number:</label>
-                <input type="seat" id="seat" name="seat">
+                <input type="seat" id="seat" name="flight[seat]">
+            </div>
+            <br>
+            <div>
+                <label for="depart_date">Departure date:</label>
+                <input type="date" id="depart_date" name="flight[depart_date]">
             </div>
             <br>
             <div>
                 <label for="depart_time">Depart time:</label>
-                <input type="time" id="depart_time" name="depart_time">
+                <input type="time" id="depart_time" name="flight[depart_time]">
             </div>
             <br>
             <div>
                 <label for="depart_from">Where are you departing from?</label>
-                <input type="text" id="depart_from" name="depart_from">
+                <input type="text" id="depart_from" name="flight[depart_from]">
+            </div>
+            <br>
+            <div>
+                <label for="arrival_date">Arrival date:</label>
+                <input type="date" id="arrival_date" name="flight[arrival_date]">
             </div>
             <br>
             <div>
                 <label for="arrival_time">Arrival time:</label>
-                <input type="time" id="arrival_time" name="arrival_time">
+                <input type="time" id="arrival_time" name="flight[arrival_time]">
             </div>
             <br>
             <div>
                 <label for="arrival_to">Where will you be arriving to?</label>
-                <input type="text" id="arrival_to" name="arrival_to">
+                <input type="text" id="arrival_to" name="flight[arrival_to]">
             </div>
             <br>
             <div>
-                <input type="submit" name="submit" value="Add to Trip">
+                <input type="submit" name="submit" value="Add flight to Trip">
             </div>
+        </form>
+        <br>
+        <form action="/trips/<%=@trip.id%>" method="get">
+            <input type="submit" name="submit" value="Back to trip info">
         </form>
     </div>
 <% end %>
