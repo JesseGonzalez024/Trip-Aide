@@ -17,8 +17,27 @@ class FlightController < ApplicationController
         end
     end 
 
-    patch '/flights/:id/show' do 
-        binding.pry
+    get '/flights/:id/show' do
+        @flight = Flight.find_by_id(params[:id])
+        @trip = Trip.find_by_id(@flight.trips_id)
+        @current_user = User.find_by_id(session[:user_id])
+
+        if @current_user
+            erb :'/flight/show'
+        else
+            erb :'user/login'
+        end
     end
 
+    get '/flights/:id/edit' do
+        
+        @flight = Flight.find_by_id(params[:id])
+        @current_user = User.find_by_id(session[:user_id])
+        
+        if @current_user
+            erb :'/flight/edit'
+        else
+            erb :'user/login'
+        end
+    end
 end
