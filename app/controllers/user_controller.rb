@@ -8,6 +8,9 @@ class UserController < ApplicationController
 
     get '/login' do
         #Takes user to erb login.
+        if logged_in?
+            redirect to '/user/homepage'
+        end
         erb :'user/login'
     end
 

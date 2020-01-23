@@ -15,10 +15,9 @@
 
         </style>
     </head>
-    <% if logged_in? && @current_user.id == @trip.user_id %>
         <h1>Your <%=@trip.name%> trip!</h1>
             <nav>
-                <form action="/trips/edit" method='get'>
+                <form action="/trips/<%=@trip.id%>/edit" method='get'>
                     <button name="id" type="submit" value="<%=@trip.id%>">Edit Trip</button>   
                 </form>
                 <form action="/trips/<%=@trip.id%>" method='post'>
@@ -55,11 +54,4 @@
                                 <h5>Arrial from: <%= @flight.arrival_to %> on: <%= @flight.arrival_date %> </h5>
                             </section>
                         <% end %>
-        <% else %>
-            
-            <h1> Error </h1>
-            <h4>Sorry for the issue, please log in to your account </h4>
-            <a href="/"> Return to front page </a>
-
-        <% end %>
 <html>

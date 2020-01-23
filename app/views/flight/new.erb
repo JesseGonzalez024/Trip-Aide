@@ -4,8 +4,6 @@
         </style>
     </head>
 
-
-<% if logged_in?%>
     <h2> Add a flight to your <%=@trip.name%> trip! </h2>
     <div>
         <form action="/flights/<%=@trip.id%>" method='post'>
@@ -63,5 +61,4 @@
             <input type="submit" name="submit" value="Back to trip info">
         </form>
     </div>
-<% end %>
 </html>

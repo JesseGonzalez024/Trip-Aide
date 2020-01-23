@@ -4,10 +4,9 @@
         </style>
     </head>
 
-    <% if logged_in? && @current_user.id == @trip.user_id%>
-        <h1> Edit Trips here </h1>
+       <h1> Edit Trips here </h1>
 
-        <form action="/trips/<%=@trip.id%>/edit" method='post'>
+        <form action="/trips/<%=@trip.id%>" method='post'>
                 <input id="hidden" type="hidden" name="_method" value='patch'>
                 <div>
                     <label for="name">Change the trip's name:</label>
@@ -32,13 +31,4 @@
         <form action="/trips/<%=@trip.id%>" method='get'>
             <input type="submit" name="submit" value="Return to Trip info">
         </form>
-    
-    <% else %>
-            
-            <h1> Error </h1>
-            <h4>Sorry for the issue, please log in to your account </h4>
-            <a href="/"> Return to front page </a>
-
-    <% end %>
-
 </html>

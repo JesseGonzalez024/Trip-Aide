@@ -20,19 +20,16 @@ class FlightController < ApplicationController
         end
     end 
 
-    get '/flights/:id/show' do
+    # get '/flights/:id/show' do
 
-        if logged_in?
-
-            #@current_user = User.find_by_id(session[:user_id])
-            @flight = Flight.find_by_id(params[:id])
-            @trip = Trip.find_by_id(@flight.trips_id)  
+    #         @flight = Flight.find_by_id(params[:id])
+    #         @trip = Trip.find_by_id(@flight.trips_id)  
             
-            erb :'/flight/show'
-        else
-            erb :'user/login'
-        end
-    end
+    #         erb :'/flight/show'
+    #     else
+    #         erb :'user/login'
+    #     end
+    # end
 
     get '/flights/:id/edit' do
         

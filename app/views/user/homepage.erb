@@ -36,7 +36,6 @@
             }
         </style>
     </head>
-    <% if logged_in? %>
             <div id="page">
                 <div  id="intro">
                     <h3> Welcome, <%=@current_user.name%> </h3>
@@ -46,6 +45,7 @@
                             <a href="/logout">Log Out</a>
                         </nav>
                 </div>
+                <% #binding.pry %>
                 <section id="trips">
                     <h4> Your current trips: </h4>
                         <% if @current_user.trips.size > 0 %>
@@ -67,12 +67,5 @@
                         <br>
                 </section>
             </div>
-    <% else %>
-            
-            <h1> Error </h1>
-            <h4>Sorry for the issue, please log in to your account </h4>
-            <a href="/"> Return to front page </a>
-            
-    <% end %>
 </html>
        
