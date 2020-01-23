@@ -11,7 +11,6 @@ class UserController < ApplicationController
         erb :'user/login'
     end
 
-    #must add logic to determine if credentials fit requirments 
     post '/registration' do
         #Creates new user instance/ redirects to homepage.
 
@@ -20,6 +19,7 @@ class UserController < ApplicationController
         end
         
         @user = User.new(params[:user])
+        
         if @user.save
             session[:user_id] = @user.id
             redirect to 'user/homepage'
@@ -35,6 +35,7 @@ class UserController < ApplicationController
             erb :'/user/login'
         end
         @user = User.find_by(username: params[:username])
+            
             if  @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.id
                 redirect to '/user/homepage'
@@ -45,9 +46,8 @@ class UserController < ApplicationController
 
     get '/user/homepage' do
         #Verifies user/ takes user to erb homepage.
-        
-        @current_user = User.find_by_id(session[:user_id])
-        if @current_user
+
+        if logged_in?
             erb :'user/homepage'
         else
             erb :welcome
@@ -61,10 +61,9 @@ class UserController < ApplicationController
         erb :welcome
     end
     
-    get '/user/inspiration' do
+    get '/user/inspiration' do    
         
-        @current_user = User.find_by_id(session[:user_id]) 
-        if @current_user
+        if logged_in?
             erb :'user/inspiration'
         end
     end

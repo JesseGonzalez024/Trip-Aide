@@ -36,10 +36,10 @@
             }
         </style>
     </head>
-        <% if Helpers.is_logged_in?(session)%>
+    <% if logged_in? %>
             <div id="page">
                 <div  id="intro">
-                    <h3> Welcome, <%=Helpers.current_user(session).name%> </h3>
+                    <h3> Welcome, <%=@current_user.name%> </h3>
                         <nav>
                             <a href="/trips/new"> Create a new Trip </a>
                             <a href="/user/inspiration">Need Inspiration? </a>
@@ -48,8 +48,8 @@
                 </div>
                 <section id="trips">
                     <h4> Your current trips: </h4>
-                        <% if Helpers.current_user(session).trips.size > 0 %>
-                            <% Helpers.current_user(session).trips.map do |trip| %>
+                        <% if @current_user.trips.size > 0 %>
+                            <% @current_user.trips.map do |trip| %>
                                 <div>
                                     <ul>
                                         <li> <a href="/trips/<%=trip.id%>"> <%=trip.name%> </a> </li>
@@ -67,6 +67,12 @@
                         <br>
                 </section>
             </div>
-        <% end %>
+    <% else %>
+            
+            <h1> Error </h1>
+            <h4>Sorry for the issue, please log in to your account </h4>
+            <a href="/"> Return to front page </a>
+            
+    <% end %>
 </html>
        

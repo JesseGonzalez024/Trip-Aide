@@ -3,14 +3,15 @@
         <style>
         </style>
     </head>
-    <% if Helpers.is_logged_in?(session)%>
+    <% if @trip.user_id == @current_user.id %>
         <h1> Your Flight Details! </h1>
             <nav>
                 <form action="/trips/<%=@trip.id%>" method='get'>
                     <button name="id" type="submit" value="<%=@trip.id%>">Back to Trip Info</button> 
                 </form>
+                <br>
                 <form action="/flights/<%=@flight.id%>/edit" method='get'>
-                    <button name="id" type="submit" value="<%=@flight.id%>">Edit Flight detials</button> 
+                    <button name="id" type="submit" value="<%=@flight.id%>">Edit Flight details</button> 
                 </form>
             </nav>
                 <h3>Airline: <%=@flight.airline%>  </h3>
@@ -22,6 +23,7 @@
                 <h3>Arrival Date: <%=@flight.arrival_date%>  </h3>
                 <h3>Arrival Time: <%=@flight.arrival_time%>  </h3>
                 <h3>Arriving to: <%=@flight.arrival_to%>  </h3>
-    <%#binding.pry%>
+    <% else %>
+        
     <% end %>
 </html>

@@ -7,22 +7,27 @@ class FlightController < ApplicationController
     end
 
     post '/flights/:id' do
-        @flight = Flight.new(params[:flight])
-        @flight.trips_id = params[:id]
-        
-        if @flight.save
-            redirect to "/trips/#{@flight.trips_id}"
-        else
-            redirect to '/flights/:id/new'
+
+        if logged_in?
+            @flight = Flight.new(params[:flight])
+            @flight.trips_id = params[:id]
+            
+            if @flight.save
+                redirect to "/trips/#{@flight.trips_id}"
+            else
+                redirect to '/flights/:id/new'
+            end
         end
     end 
 
     get '/flights/:id/show' do
-        @flight = Flight.find_by_id(params[:id])
-        @trip = Trip.find_by_id(@flight.trips_id)
-        @current_user = User.find_by_id(session[:user_id])
 
-        if @current_user
+        if logged_in?
+
+            #@current_user = User.find_by_id(session[:user_id])
+            @flight = Flight.find_by_id(params[:id])
+            @trip = Trip.find_by_id(@flight.trips_id)  
+            
             erb :'/flight/show'
         else
             erb :'user/login'
@@ -34,7 +39,9 @@ class FlightController < ApplicationController
         @flight = Flight.find_by_id(params[:id])
         @current_user = User.find_by_id(session[:user_id])
         
-        if @current_user
+        if logged_in?
+            @flight = Flight.find_by_id(params[:id])
+            #@current_user = User.find_by_id(session[:user_id])
             erb :'/flight/edit'
         else
             erb :'user/login'

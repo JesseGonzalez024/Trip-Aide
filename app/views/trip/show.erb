@@ -15,7 +15,7 @@
 
         </style>
     </head>
-    <% if Helpers.is_logged_in?(session)%>
+    <% if logged_in? && @current_user.id == @trip.user_id %>
         <h1>Your <%=@trip.name%> trip!</h1>
             <nav>
                 <form action="/trips/edit" method='get'>
@@ -28,29 +28,38 @@
                 <form action="/flights/<%=@trip.id%>/new" method='get'>
                     <button name="id" type="submit" value="<%=@trip.id%>">Add a flight</button>  
                 </form>
-                <form action="/flights/<%=@flight.id%>/show" method='get'>
-                    <button name="id" type="submit" value="<%=@flight.id%>">View Flight(s) Info</button> 
-                </form>
+                <% if @flight != nil %>
+                    <form action="/flights/<%=@flight.id%>/show" method='get'>
+                        <button name="id" type="submit" value="<%=@flight.id%>">View Flight(s) Info</button> 
+                    </form>
+                <% end %>
                 <form action="/user/homepage" method='get'>
                     <button name="id" type="submit" value="<%=@trip.id%>">Back to Homepage</button> 
                 </form>
             </nav>
             <br>
             <br>
-        <h2>Your trip to <%=@trip.destination%> is set to start on:</h2>
-            <h5><%=@trip.start_date%></h5> 
-        <h2>Will end on: </h2>
-        <h5> <%=@trip.end_date%> </h5>
-        <h2> Flight Info: </h2>
-        <% if @flight == nil %>
-            <h5> You have no flight(s) planned for this trip </h5>
+                <h2>Your trip to <%=@trip.destination%> is set to start on:</h2>
+                    <h5><%=@trip.start_date%></h5> 
+                    <h2>Will end on: </h2>
+                    <h5> <%=@trip.end_date%> </h5>
+                    <h2> Flight Info: </h2>
+                        
+                        <% if @flight == nil %>
+                            <h5> You have no flight(s) planned for this trip </h5>
+                        
+                        <% else %>
+                            <section>
+                                <h4> <%= @flight.airline %> </h4>
+                                <h5>Departure from: <%= @flight.depart_from %> on: <%= @flight.depart_date %></h5>
+                                <h5>Arrial from: <%= @flight.arrival_to %> on: <%= @flight.arrival_date %> </h5>
+                            </section>
+                        <% end %>
         <% else %>
-            <section>
-                <h4> <%= @flight.airline %> </h4>
-                <h5>Departure from: <%= @flight.depart_from %> on: <%= @flight.depart_date %></h5>
-                <h5>Arrial from: <%= @flight.arrival_to %> on: <%= @flight.arrival_date %> </h5>
-                
-            </section>
+            
+            <h1> Error </h1>
+            <h4>Sorry for the issue, please log in to your account </h4>
+            <a href="/"> Return to front page </a>
+
         <% end %>
-    <% end %>
 <html>

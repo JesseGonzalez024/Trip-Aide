@@ -4,36 +4,42 @@
         </style>
     </head>
 
-<% if Helpers.is_logged_in?(session)%>
-    <div>
-        <header id="new">
-            <h1>Add a new trip:</h1>
-        </header>
-    </div>
-    <div id="new_trip">
-        <body>
-            <form action='/trips' method='post'>
-                <h5> Name your trip! </h5>
-                    <input type="text" id="name" name="trip[name]">
-                    <br>
-                <h5> Where are you going to? </h5>
-                    <input type="text" id="destination" name="trip[destination]">
-                    <br>
-                <h5> When are you leaving? </h5>
-                    <input type="date" name="trip[start_date]" min="1980-01-01" max="2030-01-01" required>
-                    <br>
-                <h5> When do you come back? </h5>
-                    <input type="date" name="trip[end_date]" min="1980-01-01" max="2030-01-01" required>
-                    <br>
-                    <br>    
-                <button>Submit</button></p>
-            </form>
-            <form action="/user/homepage" method='get'>
-            <div>
-                <button name="id" type="submit">Back to Homepage</button>
+    <% if logged_in? %>
+        <div>
+            <header id="new">
+                <h1>Add a new trip:</h1>
+            </header>
+        </div>
+        <div id="new_trip">
+                <body>
+                <form action='/trips' method='post'>
+                    <h5> Name your trip! </h5>
+                        <input type="text" id="name" name="trip[name]">
+                        <br>
+                    <h5> Where are you going to? </h5>
+                        <input type="text" id="destination" name="trip[destination]">
+                        <br>
+                    <h5> When are you leaving? </h5>
+                        <input type="date" name="trip[start_date]" min="1980-01-01" max="2030-01-01" required>
+                        <br>
+                    <h5> When do you come back? </h5>
+                        <input type="date" name="trip[end_date]" min="1980-01-01" max="2030-01-01" required>
+                        <br>
+                        <br>    
+                    <button>Submit</button></p>
+                </form>
+                <form action="/user/homepage" method='get'>
+                <div>
+                    <button name="id" type="submit">Back to Homepage</button>
             </div>   
-        </form>
-        <body>
-    </div>
-<% end %>
+            </form>
+            <body>
+        </div>
+    <% else %>
+            
+            <h1> Error </h1>
+            <h4>Sorry for the issue, please log in to your account </h4>
+            <a href="/"> Return to front page </a>
+
+    <% end %>
 </html>

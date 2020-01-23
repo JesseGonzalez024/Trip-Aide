@@ -5,7 +5,7 @@
     </head>
 
 
-<% if Helpers.is_logged_in?(session)%>
+<% if logged_in?%>
     <h2> Add a flight to your <%=@trip.name%> trip! </h2>
     <div>
         <form action="/flights/<%=@trip.id%>" method='post'>
