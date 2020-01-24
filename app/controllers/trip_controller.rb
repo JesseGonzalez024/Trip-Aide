@@ -48,8 +48,8 @@ class TripController < ApplicationController
 
     get '/trips/:id' do
         @trip = Trip.find_by_id(params[:id])           
-        @flight = Flight.find_by_trip_id(@trip.id)
         validate
+        @flight = Flight.find_by_trip_id(@trip.id)
         erb :'/trip/show'
     end
     
