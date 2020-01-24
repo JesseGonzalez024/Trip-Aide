@@ -34,11 +34,10 @@ class FlightController < ApplicationController
     get '/flights/:id/edit' do
         
         @flight = Flight.find_by_id(params[:id])
-        @current_user = User.find_by_id(session[:user_id])
+        current_user = User.find_by_id(session[:user_id])
         
         if logged_in?
             @flight = Flight.find_by_id(params[:id])
-            #@current_user = User.find_by_id(session[:user_id])
             erb :'/flight/edit'
         else
             erb :'user/login'
