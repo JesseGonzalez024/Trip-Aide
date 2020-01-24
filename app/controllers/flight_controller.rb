@@ -10,10 +10,10 @@ class FlightController < ApplicationController
 
         if logged_in?
             @flight = Flight.new(params[:flight])
-            @flight.trips_id = params[:id]
+            @flight.trip_id = params[:id]
             
             if @flight.save
-                redirect to "/trips/#{@flight.trips_id}"
+                redirect to "/trips/#{@flight.trip_id}"
             else
                 redirect to '/flights/:id/new'
             end

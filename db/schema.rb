@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20200119214004) do
     t.string  "depart_from"
     t.string  "arrival_time"
     t.string  "arrival_to"
-    t.integer "trips_id"
+    t.integer "trip_id"
     t.string  "depart_date"
     t.string  "arrival_date"
   end

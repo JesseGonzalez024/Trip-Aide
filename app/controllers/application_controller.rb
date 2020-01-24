@@ -10,9 +10,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    if logged_in?
-      redirect to '/user/homepage'
-    end
     erb :welcome
   end
 
@@ -25,7 +22,7 @@ class ApplicationController < Sinatra::Base
       !!current_user
     end
 
-    def belongs_to_user?
+    def belongs_to_user?(trip)
       if @trip != nil
         if current_user.id != @trip.user_id
           binding.pry

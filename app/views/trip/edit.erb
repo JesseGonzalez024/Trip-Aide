@@ -6,7 +6,7 @@
 
        <h1> Edit Trips here </h1>
 
-        <form action="/trips/<%=@trip.id%>" method='post'>
+        <form action="/trips/<%=@trip.id%>/edit" method='post'>
                 <input id="hidden" type="hidden" name="_method" value='patch'>
                 <div>
                     <label for="name">Change the trip's name:</label>

@@ -4,13 +4,10 @@ class TripController < ApplicationController
         if !logged_in?
             redirect to '/'
         end
-
         erb :'/trip/new'
-        #Takes user to erb: NEW to make new trip instance  
     end
 
     post '/trips' do
-        #Creates a NEW trip insatnce/ redirects to homepage.
         if !logged_in?
             redirect to '/'
         end
@@ -25,40 +22,35 @@ class TripController < ApplicationController
         end
     end
 
-    get '/trips/:id/edit' do 
-        #Takes user to erb EDIT to edit selected trip.   
+    get '/trips/:id/edit' do  
         @trip = Trip.find_by_id(params[:id])
-        #@erb_address = '/trip/edit'
         validate
         erb :'/trip/edit'
 
     end
 
-    patch '/trips/:id' do
-        #Accepts new form with changes/ UPDATES trip instance data.
-            
-            @trip = Trip.find_by_id(params[:id])
-            @trip.update(params[:trip])
-            
-            if @trip.save
-                @route_address = "/trips/#{@trip.id}"
-                validate?
-            end
+    patch '/trips/:id/edit' do
+        @trip = Trip.find_by_id(params[:id])
+        validate
+        @trip.update(params[:trip])
+        
+        if @trip.save
+            redirect to "/trips/#{@trip.id}"           
+        end
     end
 
     delete '/trips/:id' do
-        #Deletes trip instance/ redirects to homepage.     
-            @trip = Trip.find_by_id(params[:id])
-            @trip.destroy
-            redirect to '/user/homepage'
+        @trip = Trip.find_by_id(params[:id])
+        validate
+        @trip.destroy
+        redirect to '/user/homepage'
     end
 
     get '/trips/:id' do
-        #Takes user to the erb SHOW.
         @trip = Trip.find_by_id(params[:id])           
-        @flight = Flight.find_by_trips_id(@trip.id)
-        @erb_address = "/trip/show"
-        validate?
+        @flight = Flight.find_by_trip_id(@trip.id)
+        validate
+        erb :'/trip/show'
     end
     
 end

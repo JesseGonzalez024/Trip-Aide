@@ -38,18 +38,17 @@
     </head>
             <div id="page">
                 <div  id="intro">
-                    <h3> Welcome, <%=@current_user.name%> </h3>
+                    <h3> Welcome, <%=current_user.name%> </h3>
                         <nav>
                             <a href="/trips/new"> Create a new Trip </a>
                             <a href="/user/inspiration">Need Inspiration? </a>
                             <a href="/logout">Log Out</a>
                         </nav>
                 </div>
-                <% #binding.pry %>
                 <section id="trips">
                     <h4> Your current trips: </h4>
-                        <% if @current_user.trips.size > 0 %>
-                            <% @current_user.trips.map do |trip| %>
+                        <% if current_user.trips.size > 0 %>
+                            <% current_user.trips.map do |trip| %>
                                 <div>
                                     <ul>
                                         <li> <a href="/trips/<%=trip.id%>"> <%=trip.name%> </a> </li>

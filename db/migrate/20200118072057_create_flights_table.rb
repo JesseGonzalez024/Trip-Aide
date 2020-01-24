@@ -8,7 +8,7 @@ class CreateFlightsTable < ActiveRecord::Migration
       t.string :depart_from
       t.string :arrival_time
       t.string :arrival_to
-      t.integer :trips_id
+      t.integer :trip_id
     end
   end
 end
